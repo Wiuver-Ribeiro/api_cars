@@ -14,6 +14,8 @@ module.exports = {
 
   getAllCars: async (req, res, next) => {
     try {
+      res.setHeader('Content-type', 'application/json');
+      res.status(200).send(cars);
     } catch (error) {
       return res.stats(400).send({ error: "Erro ao buscar  todos os carros!" });
     }
