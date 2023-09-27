@@ -5,7 +5,7 @@ const Car = require("../models/cars");
 module.exports = {
   addCar: async (req, res, next) => {
     try {
-      const car = await Car.create(req.body);
+      const car = await Car.save(req.body);
       return res.send({ car });
     } catch (error) {
       return res.status(400).send({ error: "Erro ao cadastrar um novo carro!" });
@@ -20,4 +20,5 @@ module.exports = {
       return res.stats(400).send({ error: "Erro ao buscar  todos os carros!" });
     }
   },
+  
 };
