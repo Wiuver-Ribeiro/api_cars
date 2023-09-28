@@ -20,12 +20,12 @@ const CarSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  users: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-    },
-  ],
+//   users: [
+//     {
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: "user",
+//     },
+//   ],
 });
 
 const Car = mongoose.model("Car", CarSchema);

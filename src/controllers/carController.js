@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require('../database/database');
+require("../database/database");
 
 const Car = require("../models/cars");
 
@@ -13,8 +13,13 @@ module.exports = {
         model,
         description,
         year,
+        //Referenciando a Model Users
+        // users: req.user,
       });
       await car.save();
+
+      // req.user.cars.push(car._id);
+      // await req.user.save();
       return res.send({ car });
     } catch (error) {
       return res
@@ -55,7 +60,7 @@ module.exports = {
       const car = await Car.findById(carId);
 
       if (!car) {
-        return res.status(404).json({ error: 'Carro não encontrado' });
+        return res.status(404).json({ error: "Carro não encontrado" });
       }
 
       car.brand = req.body.brand || car.brand;
@@ -67,7 +72,7 @@ module.exports = {
 
       return res.status(200).json({ car });
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao editar o carro' });
+      return res.status(500).json({ error: "Erro ao editar o carro" });
     }
   },
 
@@ -77,10 +82,11 @@ module.exports = {
 
       const car = await Car.findByIdAndDelete(carId);
 
-      return res.status(200).json({ message: 'Carro apagado com sucesso!',car });
+      return res
+        .status(200)
+        .json({ message: "Carro apagado com sucesso!", car });
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao apagar o carro!' });
+      return res.status(500).json({ error: "Erro ao apagar o carro!" });
     }
-  }
-
+  },
 };

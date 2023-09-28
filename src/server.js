@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/cars", routes);
+app.use("/", routes);
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port} `);
