@@ -5,7 +5,8 @@ const carController = require('../controllers/carController');
 
 router.get('/list', carController.getAllCars);
 router.post('/register', carController.addCar);
-router.get('/:cardId', carController.getCarById);
-router.put('/:cardId', carController.editCarById);
+router.get('/:carId', carController.getCarById);
+router.put('/:carId', carController.editCarById);
+router.delete('/:carId', carController.deleteCarById);
 
 module.exports = router;
