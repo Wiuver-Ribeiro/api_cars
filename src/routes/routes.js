@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const carController = require('../controllers/carController');
+// const carValidator = require('../validators/carValidator');
 
 //Routes Cars
 router.post('/cars/register', carController.addCar);
