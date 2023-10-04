@@ -22,6 +22,11 @@ const UserSchema = new mongoose.Schema({
       ref: "car",
     },
   ],
+  group: {
+    type: String,
+    required: true,
+    enum: ['admin',' user']
+  }
 });
 
 const User = mongoose.model("User", UserSchema);

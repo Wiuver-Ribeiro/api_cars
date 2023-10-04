@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const { validationResult, matchedData } = require("express-validator");
 require("../database/database");
 
 const Car = require("../models/cars");
@@ -7,19 +8,23 @@ const Car = require("../models/cars");
 module.exports = {
   addCar: async (req, res, next) => {
     try {
+      const errors = validationResult(req);
+
+      if (!errors.isEmpty()) {
+        res.json({ error: errors.mapped() });
+        return
+      }
+
       const { brand, model, description, year } = req.body;
+      
       const car = new Car({
         brand,
         model,
         description,
         year,
-        //Referenciando a Model Users
-        // users: req.user,
       });
-      await car.save();
 
-      // req.user.cars.push(car._id);
-      // await req.user.save();
+      await car.save();
       return res.send({ car });
     } catch (error) {
       return res

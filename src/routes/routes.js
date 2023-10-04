@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const carController = require('../controllers/carController');
-// const carValidator = require('../validators/carValidator');
+const carValidator = require('../validators/carValidator');
 
 //Routes Cars
-router.post('/cars/register', carController.addCar);
+router.post('/cars/register',carValidator.carManipulate, carController.addCar);
 router.get('/cars', carController.getAllCars);
 router.get('/cars/:carId', carController.getCarById);
 router.put('/cars/:carId', carController.editCarById);
